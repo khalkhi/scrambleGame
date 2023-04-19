@@ -12,36 +12,42 @@
 
 	
  <div class="container2">
-	<form id="startgame">
-		<!-- Start and End buttons -->
-		<button type="button" id="start-btn" onclick="PlayGame()" disabled>Start</button> <br><br> <!--&nbsp;&nbsp;&nbsp;-->
-		<button type="button" id="end-btn" onclick="findPercentageScore()" disabled>End</button><br><br> <br><br> <br><br> 
-	  </form>
 	  
   <!-- Play Area -->
 <div class="play-area">
 	<!-- Scrambled characters -->
 	<h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		&nbsp;**SCRAMBLE MANIA**</h2>
-	
-	<p>Unscramble the following word:</p>
-	
-	
-
 	<!-- Answer input, Accept and Next buttons --><br><br> <br><br> 
-	
+	<center>
 	<div>
 		<!-- word suggestion should come here--><br><br> 
-		<label for="scrambled-word">Scrambled Word:</label>
-		<input type="text" id="scrambled-word" disabled><br> <br> <br> 
+		<!--<label for="wordArea">Scrambled Word:</label>-->
+		<!--<input type="text" id="scrambled-word" disabled><br> <br> <br> -->
+		<div id="word-Area">
+			<p id="wordArea"></p>
+		</div><br> <br> 
 	  </div>
 	  <div>
 		<label for="answer">Answer:</label>
-		<input type="text" id="answer"><br> 
-		<button id="accept-btn" onclick="checkAnswer()" disabled>Accept</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<button id="next-btn" onclick="PlayGame()" disabled>Next</button>
-	  </div>
-  </div>
+		<input type="text" id="answer" required pattern="[a-z]+"><br> <br><br><br><br><br><br>
+		<button id="accept-btn" onclick= "checkAnswer()">Accept</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button id="next-btn" onclick= "PlayGame()">Next</button>
+		<button type="button" id="end-btn" onclick= "findPercentageScore()" >End</button>
+	  </div></center>
+  </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <br><br><br>
+
+<center>
+  <div id="showcharts"></div>
+
+  <h2>Results</h2>
+
+	  <form>
+		  <textarea id="showresults" name="showresults" rows="10" cols="50"> </textarea>
+	  </form>
+	  <br>
+	  <br>
 
 <!--<input type="text" id="answer-input"  disabled><br><br> <br><br> 
 	<button type="button" id="accept-btn" onclick="CheckAnswer()" disabled>Accept</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -50,6 +56,7 @@
   
 
   <a href="index.html" class="button">HOME</a><br><br><br>
+</center>
 </div>
 </body>
 </html>
