@@ -1,0 +1,93 @@
+
+body
+{
+    min-height:100vh;
+    background-color:  #0c192c;
+    color:#4fc3dc;
+
+}
+
+.container{
+
+    height: 100%;
+    width: 100%;
+   
+}
+
+.homescreen 
+{
+    background-color: #4fc3dc;
+    border: 2px solid;
+    border-radius: 10px 10px;
+    border-color:#4fc3dc;
+    display: flex;
+    /* justify-content: center;*/
+    width: 500px;
+    position: absolute;
+    top: 40%;
+    left: 35%;
+    margin: -50px 0 0 -50px;
+    color:  #0c192c;
+  
+}
+
+.button {
+    position:center;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #092246;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+  }
+
+.button:hover {background-color:#4fc3dc}
+
+.button:active {
+  background-color: #092246;
+  box-shadow: 0 5px #092246;
+  transform: translateY(4px);
+}
+
+.registration {
+
+    background-color: #4fc3dc;
+    border: 2px solid;
+    border-radius: 10px 10px;
+    border-color:#4fc3dc;
+    display: flex;
+    /* justify-content: center;*/
+    width: 500px;
+    position: absolute;
+    top: 20%;
+    left: 35%;
+    margin: -50px 0 0 -50px;
+    color:  #0c192c;
+}
+
+
+.container2{
+
+    height: 100%;
+    width: 100%;
+   
+}
+
+.play-area{
+    border-color: #4fc3dc;
+    border: 2px solid;
+    border-radius: 10px 10px;
+    position:absolute;
+    height:500px;
+    width:500px;
+    top: 20%;
+    left: 35%;
+    margin: -50px 0 0 -50px;
+    color:  #4fc3dc;
+}
