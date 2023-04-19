@@ -1,6 +1,7 @@
 
 // Global array
 let PlayersData = [];
+var word = ' ';
 var cQuestion = 0; //stores amount of questions asked
 var cMarks = 0; //stores number of correct answers
 
@@ -37,9 +38,9 @@ function Register()
         ageValue--;
     }
 
-    if (ageValue < 8 || ageValue > 25) 
+    if (ageValue < 8 || ageValue > 12) 
         {
-            alert("Age should be between 8 and 25!");
+            alert("Age should be between 8 and 12!");
             return false;
         }
 
@@ -77,38 +78,10 @@ function Register()
     const startBtn = document.getElementById("start-btn");
     startBtn.disabled = false;
 
-    const endBtn = document.getElementById("end-btn");
+    const endBtn = document.getElementById("endBtn");
     endBtn.disabled = false;
 
-      /*  function CheckAnswer(originalChars, playerAnswer) {
-            // Perform JavaScript validation on playerAnswer
-            // Here's an example using a regular expression to ensure playerAnswer only contains letters and spaces:
-            if (!/^[A-Za-z ]+$/.test(playerAnswer)) {
-              alert("Invalid answer! Please only use letters and spaces.");
-              return;
-            }
-            
-			cQuestion = cQuestion + 1;//a counter to count the amount of question given
-			
-            // Check if playerAnswer is correct
-			var isCorrect
-			if(originalChars.toLowerCase() == playerAnswer.toLowerCase()){
-				isCorrect = playerAnswer.toLowerCase();
-				cMarks = cMarks + 1;
-			}
-          
-            // Append data to PlayerData array
-            PlayerData.push({
-              originalChars: originalChars,
-              playerAnswer: playerAnswer,
-              isCorrect: isCorrect
-            });
-          
-            // Return whether the answer is correct
-            return isCorrect;
-          } 
-          
-
+      /*  
     // Disable all fields and the Register button
     const form = document.querySelector("form");
     const formFields = form.querySelectorAll("input, select");
@@ -120,13 +93,14 @@ function Register()
     // Enable Start and End buttons
     const startBtn = document.getElementById("start-btn");
     startBtn.disabled = false;
-    const endBtn = document.getElementById("end-btn");
+    const endBtn = document.getElementById("endBtn");
     endBtn.disabled = false;
 */
 }
 //register function ends here
 
 //Calculating age from dob using js
+
 function calculateAge() {
     var dob = document.getElementById("dob").value;
     var dobDate = new Date(dob);
@@ -140,88 +114,86 @@ function calculateAge() {
   }
 
 
+  const minChars = 4;
+  const maxChars = 6;
+  const words = ['apple', 'banana', 'cherry', 'orange', 'pear', 'peach', 'plum', 'Abroad', 'Casual', 'Around','Couple','Accept','Caught','Arrive',
+  'Course','Access','Center','Artist','Covers','Across','Centre','Aspect','Create',
+  'Acting','Chance','Assess','Credit','Action','Change','Assist','Crisis','Active','Charge','Assume','Custom','Actual','Choice','Attack','Damage',
+  'Advice','Choose','Attend','Danger','Advise','Chosen','August','Dealer','Affect','Church','Author','Debate','Afford','Circle','Avenue','Decade',
+  'Double','Bridge','Career','Eleven','Driven','Bright','Castle','Driver','Wacko','Wader','Wafer','Wains','Waker','Waler','Wames','Wands',
+  'Waney','Wanes','Wanks','Wants','Wards',
+  'Saint','Salon','Salsa','Sales','Salad','Salal','Salat','Sauce','Sauna','Saved','Saver','Saves','Rarau','Rhino','Robin','Roche','Roper','Roral','Rinse','Cream','Dream','Gloom','Steam','Gleam','Realm','grape'];
+  
+  function PlayGame() {
+      word = getRandomWord(minChars, maxChars, words);
+      document.getElementById("wordArea").innerHTML = scrambleWord(word);
+      document.getElementById("answer").value = "";
+      document.getElementById("answer").disabled = false;
+      document.getElementById("accept-btn").disabled = false;
+      document.getElementByTagName("button")[2].disabled = false;
+      // Clear previous answer
+   answerInput.value = "";
+  }
 
+ 
+  
+  function getRandomWord(minChars, maxChars, words) {
+      let filteredWords = words.filter(word => {
+          return word.length >= minChars && word.length <= maxChars;
+      });
+      return filteredWords[Math.floor(Math.random() * filteredWords.length)];
+  }
+  
+  function scrambleWord(word) {
+      var scrambled = '';
+      var chars = word.split('');
+      while (chars.length > 0) {
+          var index = Math.floor(Math.random() * chars.length);
+          scrambled += chars[index];
+          chars.splice(index, 1);
+      }
+      return scrambled;
 
-// PlayGame function
-function PlayGame()
-    {
-    // Disable Start button
-    const startBtn = document.getElementById("start-btn");
-    startBtn.disabled = false;//just edited back to true
+      
+  }
 
-
-    //Characters for the game
-    const minChars = 4;
-    const maxChars = 6;
-    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const wordList = ['Abroad', 'Casual', 'Around','Couple','Accept','Caught','Arrive','Course','Access','Center','Artist','Covers','Across','Centre','Aspect','Create',
-    'Acting','Chance','Assess','Credit','Action','Change','Assist','Crisis','Active','Charge','Assume','Custom','Actual','Choice','Attack','Damage',
-    'Advice','Choose','Attend','Danger','Advise','Chosen','August','Dealer','Affect','Church','Author','Debate','Afford','Circle','Avenue','Decade',
-    'Afraid','Client','Backed','Decide','Agency','Closed','Barely','Defeat','Agenda','Closer','Battle','Defend','Almost','Coffee','Beauty','Define',
-    'Always','Column','Became','Degree','Amount','Combat','Become','Demand','Animal','Coming','Before','Depend','Annual','Common','Behalf','Deputy',
-    'Answer','Comply','Behind','Desert','Anyone','Copper','Belief','Design','Anyway','Corner','Belong','Desire','Appeal','Costly','Bestie','Detail',
-    'Appear','County','Better','Detect','Beyond','Budget','During','Device','Bishop','Burden','Easily','Differ','Border','Bureau','Eating','Dinner','Bottle','Button',
-    'Editor','Direct','Bottom','Camera','Effect','Doctor','Bought','Cancer','Effort','Dollar','Branch','Cannot','Eighth','Domain','Breath','Carbon','Either',
-    'Double','Bridge','Career','Eleven','Driven','Bright','Castle','Emerge','Driver','Wacko','Wader','Wafer','Wains','Waker','Waler','Wames',
-    'Wamus','Wands','Waney','Wanes','Wanks','Wants','Wards','Wares','Warts','Warty','Waser','Wasps','Waspy','Waste','Sadly','Saddo',
-    'Saint','Salon','Salps','Salsa','Sales','Sakai','Saker','Salad','Salal','Salat','Sauce','Sauna','Saved','Saver','Saves','Rarau',
-    'Ravin','Rayah','Rayon','Reeve','Rhine','Rhino','Robin','Roche','Roper','Roral','Rinse','Cream','Dream','Gloom','Steam','Gleam','Realm','Broom','Sperm','Psalm','Album','Charm'];
-
-    let word = '';
-    let numChars = Math.floor(Math.random() * (maxChars - minChars + 1)) + minChars;
-    for (let i = 0; i < numChars; i++) {
-        let index = Math.floor(Math.random() * characters.length);
-        word += characters[index];
-    }
-    
-    // Scramble the word
-    let scrambledWord = scramble(word);
-
-    // Display the scrambled word in the Play area
-    const playArea = document.getElementById('scrambled-word');
-    playArea.value = scrambledWord;
-    
-    // Validating word in the word list
-    if (wordList.includes(word)) {
-        console.log('Valid word: ' + word);
-    } else {
-        console.log('Invalid word: ' + word);
-    }
-}
-
-
-function scramble(word) 
-{
-    let scrambledWord = '';
-    let wordArray = word.split('');
-    while (wordArray.length > 0) 
-    {
-        let index = Math.floor(Math.random() * wordArray.length);
-        scrambledWord += wordArray.splice(index, 1);
-    }
-    return scrambledWord;
-}
-
-
-
-  // Enable answer input, Accept and Next buttons
-  /*const answerInput = document.getElementById("answer-input");
+  /* Enable answer input, Accept and Next buttons
+  const answerInput = document.getElementById("answer-input");
   answerInput.disabled = false;
   const acceptBtn = document.getElementById("accept-btn");
   acceptBtn.disabled = false;
   const nextBtn = document.getElementById("next-btn");
   nextBtn.disabled = false;
-
-
-  // Clear previous answer
-  answerInput.value = "";
 */
+ 
+
+//validate the player's answer,
+document.getElementById("answer").addEventListener("blur", function() {
+  var answer = this.value.toLowerCase();
+  var unscrambled = unscrambleWord(document.getElementById("wordArea").innerHTML);
+  if (answer === unscrambled) {
+      // correct answer
+  } else {
+      // incorrect answer
+  }
+  answerInput.value = "";
+});
+
+function unscrambleWord(word) {
+  var unscrambled = '';
+    var chars = word.split('');
+    for (var i = 0; i < word.length; i++) {
+        var index = chars.indexOf(word[i]);
+        unscrambled += chars[index];
+        chars.splice(index, 1);
+    }
+    return unscrambled;
+}
 
 function findPercentageScore(){
 	// Getting player name
 	const firstName = document.getElementById("firstName").value;
     const lastName = document.getElementById("lastName").value;
-
 	  
 	//Getting current date
 	
@@ -233,19 +205,29 @@ function findPercentageScore(){
 
 	let currentDate = `${day}-${month}-${year}`;
 
-
 	// Calculation for percentage score
-
 	var percent = (cMarks/cQuestion) * 100; 
 
-
-	
 	//Clearing the form
 	document.getElementById("form").reset();
 	
 	//Display in textbox
 	var textArea = document.getElementById('showpercentage');
-	textArea.textContent = "First Name: " + firstName + ", " + "Last Name: " + lastName + ", " + "Current Date : " + currentDate + ", " + "Percentage Score: " + percent + ", " + "Number of Questions: " + cQuestion + ", " + "Number of Questions Answered: " + cMarks;  
+	textArea.textContent = "First Name: " + firstName + ", " + "Last Name: " + lastName + ", " +
+   "Current Date : " + currentDate + ", " + "Percentage Score: " + percent + ", " + "Number of Questions: " +
+    cQuestion + ", " + "Number of Questions Answered: " + cMarks;  
+
+//Display in textbox
+var textArea1 = document.getElementById('showcharts');
+textArea1.textContent = "First Name: " + firstName + ", " + "Last Name: " + lastName + ", " +
+ "Current Date : " + currentDate + ", " + "Percentage Score: " + percent.toFixed(2) + "%" + ", " +
+  "Number of Questions: " + cQuestion + ", " + "Number of Questions Answered: " + cMarks;  
+
+//Display in textbox on results page
+var textArea2 = document.getElementById('showresults');
+textArea2.textContent = "First Name: " + firstName + ", " + "Last Name: " + lastName + ", " +
+ "Current Date : " + currentDate + ", " + "Percentage Score: " + percent.toFixed(2) + "%" + ", " +
+  "Number of Questions: " + cQuestion + ", " + "Number of Questions Answered: " + cMarks;
 
 	
 	 // Enable the Register button and Input
@@ -299,74 +281,6 @@ function showAll() {
     showAllPlayersTextarea.value += playerInfo + "\n";
   }
 }
-
-
-
-
-function checkAnswer() {
-  // retrieve selected answers
-  var selectedAnswers = [];
-  var answerRadios = document.getElementsByName("answer");
-  for (var i = 0; i < answerRadios.length; i++) {
-    if (answerRadios[i].checked) {
-      selectedAnswers.push(answerRadios[i].value);
-    }
-  }
-  cQuestion = cQuestion + 1;//a counter to count the amount of question given
-  
-  // Check if playerAnswer is correct
-  var isCorrect
-			if(originalChars.toLowerCase() == playerAnswer.toLowerCase()){
-				isCorrect = playerAnswer.toLowerCase();
-				cMarks = cMarks + 1;
-			}
-  
-  
- 
-  // check if all questions are answered
-  if (selectedAnswers.length < QuestionData.length) {
-    alert("Please answer all questions.");
-    return;
-  }
- 
-  // calculate score
-  var numCorrect = 0;
-  for (var i = 0; i < selectedAnswers.length; i++) {
-    if (selectedAnswers[i] === QuestionData[i].answer) {
-      numCorrect++;
-    }
-  }
-  var score = (numCorrect / QuestionData.length) * 100;
- 
-  // update player data
-  var firstName = document.getElementById("firstname").value;
-  var lastName = document.getElementById("lastname").value;
-  var age = document.getElementById("age").value;
-  var questions = QuestionData.map(function(question) {
-    return question.question;
-  });
-  var status = (score >= 60) ? "PASS" : "FAIL";
-  var player = {
-    firstName: firstName,
-    lastName: lastName,
-    age: age,
-    questions: questions,
-    answers: selectedAnswers,
-    status: status,
-    score: score.toFixed(1)
-  };
-  PlayerData.push(player);
- 
-  // display all player data
-  showAll();
-  
-  // Return whether the answer is correct
-  //return isCorrect;
-  
-  
-  
-}
-
 
 function showfreq() {
     var chartArea = document.getElementById("showcharts");
